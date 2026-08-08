@@ -1,283 +1,1086 @@
-(function(){
-  "use strict";
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Alma Guimarães — Restaurante em Guimarães, Portugal</title>
+
+<meta
+  name="description"
+  content="Alma Guimarães. Cozinha mediterrânica em Guimarães, Portugal. R. João de Melo n° 31, 4800-416 Guimarães. Avaliação Google de 4.5/5 em 339 avaliações."
+>
+
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:title" content="Alma Guimarães">
+<meta
+  property="og:description"
+  content="Cozinha mediterrânica em Guimarães, Portugal."
+>
+<meta property="og:image" content="images/hero.jpg">
+<meta property="og:locale" content="pt_PT">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+
+<header class="nav" id="nav">
+
+  <div class="nav-inner">
+
+    <a href="#top" class="nav-brand">
+      Alma
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+
+      <a
+        href="#inicio"
+        class="nav-link"
+        data-pt="Início"
+        data-en="Home">
+        Início
+      </a>
+
+      <a
+        href="#sobre"
+        class="nav-link"
+        data-pt="Sobre"
+        data-en="About">
+        Sobre
+      </a>
+
+      <a
+        href="#menu"
+        class="nav-link"
+        data-pt="Menu"
+        data-en="Menu">
+        Menu
+      </a>
+
+      <a
+        href="#avaliacoes"
+        class="nav-link"
+        data-pt="Avaliações"
+        data-en="Reviews">
+        Avaliações
+      </a>
+
+      <a
+        href="#contacto"
+        class="nav-link"
+        data-pt="Contacto"
+        data-en="Contact">
+        Contacto
+      </a>
+
+      <a
+        href="tel:939445079"
+        class="btn btn-gold nav-cta"
+        data-pt="Reservar"
+        data-en="Reserve">
+        Reservar
+      </a>
+
+      <button
+        class="lang-toggle"
+        id="languageToggle"
+        type="button"
+        aria-label="Mudar para inglês">
+        EN
+      </button>
 
-  /* ---------- Mobile nav ---------- */
+    </nav>
 
-  var toggle = document.getElementById("navToggle");
-  var links = document.getElementById("navLinks");
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Abrir menu"
+      aria-expanded="false">
 
-  if (toggle && links) {
-    toggle.addEventListener("click", function(){
-      var isOpen = links.classList.toggle("open");
+      <span></span>
+      <span></span>
+      <span></span>
 
-      toggle.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-    });
+    </button>
 
-    links.querySelectorAll("a").forEach(function(link){
-      link.addEventListener("click", function(){
-        links.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
-    });
-  }
+  </div>
 
+</header>
 
-  /* ---------- Scroll reveal ---------- */
 
-  var revealEls = document.querySelectorAll(".reveal");
+<!-- ================= HERO ================= -->
 
-  if ("IntersectionObserver" in window) {
+<section class="hero" id="top">
 
-    var observer = new IntersectionObserver(
-      function(entries){
+  <a id="inicio"></a>
 
-        entries.forEach(function(entry){
+  <div class="hero-bg" aria-hidden="true"></div>
 
-          if (entry.isIntersecting) {
+  <div class="hero-content">
 
-            entry.target.classList.add("is-visible");
+    <p
+      class="reveal hero-kicker"
+      data-pt="ALMA"
+      data-en="ALMA">
+      ALMA
+    </p>
 
-            observer.unobserve(entry.target);
+    <p
+      class="reveal hero-location"
+      data-pt="Guimarães · Portugal"
+      data-en="Guimarães · Portugal">
+      Guimarães · Portugal
+    </p>
 
-          }
+    <h1
+      class="reveal hero-headline"
+      data-pt="Onde a alma<br>encontra o sabor."
+      data-en="Where soul<br>meets flavour.">
+      Onde a alma<br>encontra o sabor.
+    </h1>
 
-        });
+    <p
+      class="reveal hero-sub"
+      data-pt="Cozinha mediterrânica no coração de Guimarães."
+      data-en="Mediterranean cuisine in the heart of Guimarães.">
+      Cozinha mediterrânica no coração de Guimarães.
+    </p>
 
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
+    <div class="reveal hero-actions">
 
-    revealEls.forEach(function(el){
-      observer.observe(el);
-    });
+      <a
+        href="#menu"
+        class="btn btn-outline"
+        data-pt="Ver Menu"
+        data-en="View Menu">
+        Ver Menu
+      </a>
 
-  } else {
+      <a
+        href="tel:939445079"
+        class="btn btn-gold"
+        data-pt="Reservar Mesa"
+        data-en="Book a Table">
+        Reservar Mesa
+      </a>
 
-    revealEls.forEach(function(el){
-      el.classList.add("is-visible");
-    });
+    </div>
 
-  }
+  </div>
 
+  <div class="hero-scroll" aria-hidden="true">
+    <span></span>
+  </div>
 
-  /* ---------- Lightbox ---------- */
+</section>
 
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightboxImg");
-  var lightboxClose = document.getElementById("lightboxClose");
-  var galleryItems = document.querySelectorAll(".gallery-item");
 
+<!-- ================= SOBRE ================= -->
 
-  function openLightbox(src, alt){
+<section class="section about" id="sobre">
 
-    if (!lightbox || !lightboxImg) return;
+  <div class="container about-grid">
 
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || "";
+    <div class="about-text">
 
-    lightbox.classList.add("active");
-    lightbox.setAttribute("aria-hidden", "false");
+      <p
+        class="eyebrow reveal"
+        data-pt="Sobre"
+        data-en="About">
+        Sobre
+      </p>
 
-    document.body.style.overflow = "hidden";
-  }
+      <h2
+        class="reveal"
+        data-pt="Alma Guimarães"
+        data-en="Alma Guimarães">
+        Alma Guimarães
+      </h2>
 
+      <p class="reveal about-lead">
 
-  function closeLightbox(){
+        <span
+          data-pt="Alma Guimarães é um restaurante localizado em Guimarães, Portugal, que serve cozinha mediterrânica."
+          data-en="Alma Guimarães is a restaurant in Guimarães, Portugal, serving Mediterranean cuisine.">
+          Alma Guimarães é um restaurante localizado em Guimarães, Portugal, que serve cozinha mediterrânica.
+        </span>
 
-    if (!lightbox) return;
+      </p>
 
-    lightbox.classList.remove("active");
-    lightbox.setAttribute("aria-hidden", "true");
+      <ul class="about-facts reveal">
 
-    document.body.style.overflow = "";
-  }
+        <li>
 
+          <span class="fact-num">
+            4.5
+          </span>
 
-  galleryItems.forEach(function(item){
+          <span
+            class="fact-label"
+            data-pt="Avaliação no Google, 339 avaliações"
+            data-en="Google rating, 339 reviews">
+            Avaliação no Google, 339 avaliações
+          </span>
 
-    item.addEventListener("click", function(){
+        </li>
 
-      var full = item.getAttribute("data-full");
-      var img = item.querySelector("img");
+        <li>
 
-      if (item.classList.contains("img-empty")) {
-        return;
-      }
+          <span class="fact-num">
+            9.0
+          </span>
 
-      openLightbox(
-        full,
-        img ? img.alt : ""
-      );
+          <span
+            class="fact-label"
+            data-pt="Avaliação no TheFork, 89 avaliações"
+            data-en="TheFork rating, 89 reviews">
+            Avaliação no TheFork, 89 avaliações
+          </span>
 
-    });
+        </li>
 
-  });
+        <li>
 
+          <span class="fact-num">
+            €23
+          </span>
 
-  if (lightboxClose) {
-    lightboxClose.addEventListener(
-      "click",
-      closeLightbox
-    );
-  }
+          <span
+            class="fact-label"
+            data-pt="Preço médio indicado pelo TheFork"
+            data-en="Average price listed by TheFork">
+            Preço médio indicado pelo TheFork
+          </span>
 
+        </li>
 
-  if (lightbox) {
+      </ul>
 
-    lightbox.addEventListener(
-      "click",
-      function(e){
+      <p class="reveal about-note">
 
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
+        <span
+          data-pt="Não apresentamos história, prémios ou distinções não verificadas sobre este restaurante — apenas informação pública confirmada."
+          data-en="We do not present unverified history, awards or distinctions about this restaurant — only confirmed public information.">
+          Não apresentamos história, prémios ou distinções não verificadas sobre este restaurante — apenas informação pública confirmada.
+        </span>
 
-      }
-    );
+      </p>
 
-  }
+    </div>
 
 
-  document.addEventListener(
-    "keydown",
-    function(e){
+    <div class="about-media reveal">
 
-      if (e.key === "Escape") {
-        closeLightbox();
-      }
+      <div class="img-frame">
 
-    }
-  );
+        <img
+          src="images/interior.jpg"
+          alt="Interior do Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
 
+      </div>
 
-  /* ---------- Nav background on scroll ---------- */
+    </div>
 
-  var nav = document.getElementById("nav");
+  </div>
 
-  function onScroll(){
+</section>
 
-    if (!nav) return;
 
-    var y =
-      window.scrollY ||
-      window.pageYOffset;
+<!-- ================= ESTADO ================= -->
 
-    nav.style.borderBottomColor =
-      y > 40
-        ? "rgba(243,236,221,0.16)"
-        : "rgba(243,236,221,0.10)";
-  }
+<section class="status-bar">
 
-  window.addEventListener(
-    "scroll",
-    onScroll,
-    { passive: true }
-  );
+  <div class="container status-inner reveal">
 
+    <span
+      class="status-dot"
+      aria-hidden="true">
+    </span>
 
-  /* ---------- PT / EN language toggle ---------- */
+    <span
+      class="status-label"
+      data-pt="Estado atual"
+      data-en="Current status">
+      Estado atual
+    </span>
 
-  var languageToggle =
-    document.getElementById("languageToggle");
+    <span
+      class="status-value"
+      data-pt="Fechado · Abre às 20h"
+      data-en="Closed · Opens at 8 pm">
+      Fechado · Abre às 20h
+    </span>
 
-  var currentLanguage =
-    localStorage.getItem("alma-language") || "pt";
+    <span
+      class="status-source"
+      data-pt="— informação da ficha pública do Google"
+      data-en="— information from the public Google listing">
+      — informação da ficha pública do Google
+    </span>
 
+  </div>
 
-  function setLanguage(language){
+</section>
 
-    currentLanguage = language;
 
-    document.documentElement.lang =
-      language === "pt"
-        ? "pt-PT"
-        : "en";
+<!-- ================= MENU ================= -->
 
+<section class="section menu" id="menu">
 
-    document
-      .querySelectorAll("[data-pt][data-en]")
-      .forEach(function(el){
+  <div class="container">
 
-        var value =
-          el.getAttribute("data-" + language);
+    <p
+      class="eyebrow reveal center"
+      data-pt="Menu"
+      data-en="Menu">
+      Menu
+    </p>
 
-        if (value !== null) {
+    <h2
+      class="reveal center"
+      data-pt="A Carta"
+      data-en="The Menu">
+      A Carta
+    </h2>
 
-          el.innerHTML = value;
 
-        }
+    <div class="menu-grid">
 
-      });
 
+      <div class="menu-category reveal">
 
-    if (languageToggle){
+        <h3
+          data-pt="Para partilhar"
+          data-en="To Share">
+          Para partilhar
+        </h3>
 
-      languageToggle.textContent =
-        language === "pt"
-          ? "EN"
-          : "PT";
+        <ul class="menu-list">
 
-      languageToggle.setAttribute(
-        "aria-label",
-        language === "pt"
-          ? "Mudar para inglês"
-          : "Mudar para português"
-      );
+          <li>
+            <span
+              class="dish"
+              data-pt="Couvert"
+              data-en="Couvert">
+              Couvert
+            </span>
 
-      languageToggle.setAttribute(
-        "title",
-        language === "pt"
-          ? "English"
-          : "Português"
-      );
+            <span class="dots"></span>
 
-    }
+            <span class="price">
+              €3,50
+            </span>
+          </li>
 
 
-    localStorage.setItem(
-      "alma-language",
-      language
-    );
-  }
+          <li>
+            <span
+              class="dish"
+              data-pt='Camarão à "Guilho"'
+              data-en='"Guilho" Shrimp'>
+              Camarão à "Guilho"
+            </span>
 
+            <span class="dots"></span>
 
-  if (languageToggle){
+            <span class="price">
+              €15
+            </span>
+          </li>
 
-    languageToggle.addEventListener(
-      "click",
-      function(){
 
-        setLanguage(
-          currentLanguage === "pt"
-            ? "en"
-            : "pt"
-        );
+          <li>
+            <span
+              class="dish"
+              data-pt="Croquetes"
+              data-en="Croquettes">
+              Croquetes
+            </span>
 
-      }
-    );
+            <span class="dots"></span>
 
-  }
+            <span class="price">
+              €9
+            </span>
+          </li>
 
 
-  setLanguage(currentLanguage);
+          <li>
+            <span
+              class="dish"
+              data-pt="Camembert"
+              data-en="Camembert">
+              Camembert
+            </span>
 
+            <span class="dots"></span>
 
-  /* ---------- Footer year ---------- */
+            <span class="price">
+              €14
+            </span>
+          </li>
 
-  var yearEl =
-    document.getElementById("year");
 
-  if (yearEl) {
+          <li>
+            <span
+              class="dish"
+              data-pt="Ceviche"
+              data-en="Ceviche">
+              Ceviche
+            </span>
 
-    yearEl.textContent =
-      new Date().getFullYear();
+            <span class="dots"></span>
 
-  }
+            <span class="price">
+              €12
+            </span>
+          </li>
 
-})();
+
+          <li>
+            <span
+              class="dish"
+              data-pt="Pimentos Padrón"
+              data-en="Padrón Peppers">
+              Pimentos Padrón
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €9
+            </span>
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="menu-category reveal">
+
+        <h3
+          data-pt="Carne na brasa"
+          data-en="Grilled Meats">
+          Carne na brasa
+        </h3>
+
+        <ul class="menu-list">
+
+          <li>
+
+            <span
+              class="dish"
+              data-pt="Naco Minhota"
+              data-en="Minho Beef Steak">
+              Naco Minhota
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €29
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <span
+              class="dish"
+              data-pt="Plumas de porco preto ibérico"
+              data-en="Iberian Black Pork Pluma">
+              Plumas de porco preto ibérico
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €29
+            </span>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="menu-category reveal">
+
+        <h3
+          data-pt="Peixe"
+          data-en="Fish">
+          Peixe
+        </h3>
+
+        <ul class="menu-list">
+
+          <li>
+
+            <span
+              class="dish"
+              data-pt="Bacalhau à lagareiro"
+              data-en="Lagareiro-style Cod">
+              Bacalhau à lagareiro
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €27
+            </span>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="menu-category reveal">
+
+        <h3
+          data-pt="Sobremesas"
+          data-en="Desserts">
+          Sobremesas
+        </h3>
+
+        <ul class="menu-list">
+
+          <li>
+
+            <span
+              class="dish"
+              data-pt="Carpaccio"
+              data-en="Carpaccio">
+              Carpaccio
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €7
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <span
+              class="dish"
+              data-pt="Escabeche"
+              data-en="Escabeche">
+              Escabeche
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €7,50
+            </span>
+
+          </li>
+
+
+          <li>
+
+            <span
+              class="dish"
+              data-pt="Tentação"
+              data-en="Temptation">
+              Tentação
+            </span>
+
+            <span class="dots"></span>
+
+            <span class="price">
+              €8
+            </span>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= GALERIA ================= -->
+
+<section class="section gallery" id="galeria">
+
+  <div class="container">
+
+    <p
+      class="eyebrow reveal center"
+      data-pt="Galeria"
+      data-en="Gallery">
+      Galeria
+    </p>
+
+    <h2
+      class="reveal center"
+      data-pt="Momentos"
+      data-en="Moments">
+      Momentos
+    </h2>
+
+
+    <div class="gallery-grid">
+
+      <button
+        class="gallery-item reveal"
+        data-full="images/food-1.jpg"
+        aria-label="Ampliar imagem">
+
+        <img
+          src="images/food-1.jpg"
+          alt="Prato do Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
+
+      </button>
+
+
+      <button
+        class="gallery-item reveal"
+        data-full="images/interior.jpg"
+        aria-label="Ampliar imagem">
+
+        <img
+          src="images/interior.jpg"
+          alt="Interior do Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
+
+      </button>
+
+
+      <button
+        class="gallery-item reveal"
+        data-full="images/food-2.jpg"
+        aria-label="Ampliar imagem">
+
+        <img
+          src="images/food-2.jpg"
+          alt="Prato do Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
+
+      </button>
+
+
+      <button
+        class="gallery-item reveal"
+        data-full="images/exterior.jpg"
+        aria-label="Ampliar imagem">
+
+        <img
+          src="images/exterior.jpg"
+          alt="Exterior do Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
+
+      </button>
+
+
+      <button
+        class="gallery-item reveal"
+        data-full="images/food-3.jpg"
+        aria-label="Ampliar imagem">
+
+        <img
+          src="images/food-3.jpg"
+          alt="Prato do Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
+
+      </button>
+
+
+      <button
+        class="gallery-item reveal"
+        data-full="images/hero.jpg"
+        aria-label="Ampliar imagem">
+
+        <img
+          src="images/hero.jpg"
+          alt="Alma Guimarães"
+          loading="lazy"
+          onerror="this.parentElement.classList.add('img-empty')">
+
+      </button>
+
+    </div>
+
+
+    <p
+      class="gallery-note reveal"
+      data-pt="Fotografias do restaurante."
+      data-en="Restaurant photographs.">
+      Fotografias do restaurante.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= AVALIAÇÕES ================= -->
+
+<section class="section reviews" id="avaliacoes">
+
+  <div class="container">
+
+    <p
+      class="eyebrow reveal center"
+      data-pt="Avaliações"
+      data-en="Reviews">
+      Avaliações
+    </p>
+
+    <h2
+      class="reveal center"
+      data-pt="O Que Dizem"
+      data-en="What They Say">
+      O Que Dizem
+    </h2>
+
+
+    <div class="rating-summary reveal">
+
+      <div class="rating-number">
+        4.5
+      </div>
+
+      <div class="rating-meta">
+
+        <div
+          class="rating-stars"
+          aria-label="4.5 de 5 estrelas">
+          ★★★★☆
+        </div>
+
+        <div
+          class="rating-source"
+          data-pt="Google"
+          data-en="Google">
+          Google
+        </div>
+
+        <div
+          class="rating-count"
+          data-pt="339 avaliações"
+          data-en="339 reviews">
+          339 avaliações
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <p
+      class="reviews-disclaimer reveal"
+      data-pt="As avaliações apresentadas são provenientes do Google. As avaliações não são verificadas por nós."
+      data-en="The reviews shown are from Google. Reviews are not verified by us.">
+      As avaliações apresentadas são provenientes do Google. As avaliações não são verificadas por nós.
+    </p>
+
+
+    <div class="review-grid">
+
+
+      <blockquote class="review-card reveal">
+
+        <div class="review-stars">
+          ★★★☆☆
+        </div>
+
+        <p class="review-text">
+          "Ambiance: we sat inside, there's light music on the background, but the noise from the kitchen and drink station covers up the music."
+        </p>
+
+        <cite class="review-author">
+          Celissa Moraes — Google, 3/5
+        </cite>
+
+      </blockquote>
+
+
+      <blockquote class="review-card reveal">
+
+        <div class="review-stars">
+          ★☆☆☆☆
+        </div>
+
+        <p class="review-text">
+          "A very bad experience. We arrived at 13:30 and had to wait more than 2 hours for our food, with no explanation or apology at all."
+        </p>
+
+        <cite class="review-author">
+          Caroline Goncalves — Google, 1/5
+        </cite>
+
+      </blockquote>
+
+
+      <blockquote class="review-card reveal">
+
+        <div class="review-stars">
+          ★★★★☆
+        </div>
+
+        <p class="review-text">
+          "I'm living in Europe and I travel a lot. So what can I say? This place is good. I recommend their food, they are very tasty and the attendants are very nice people."
+        </p>
+
+        <cite class="review-author">
+          Vinicius Rangel Borges — Google, 4/5
+        </cite>
+
+      </blockquote>
+
+    </div>
+
+
+    <div class="reviews-cta reveal">
+
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=Alma+Guimar%C3%A3es+R.+Jo%C3%A3o+de+Melo+31+Guimar%C3%A3es"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-outline"
+        data-pt="Ver todas as avaliações"
+        data-en="See all reviews">
+        Ver todas as avaliações
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACTO ================= -->
+
+<section class="section contact" id="contacto">
+
+  <div class="container contact-grid">
+
+    <div class="contact-info">
+
+      <p
+        class="eyebrow reveal"
+        data-pt="Contacto"
+        data-en="Contact">
+        Contacto
+      </p>
+
+      <h2
+        class="reveal"
+        data-pt="Visite-nos"
+        data-en="Visit Us">
+        Visite-nos
+      </h2>
+
+
+      <address class="reveal contact-address">
+
+        Alma Guimarães<br>
+        R. João de Melo n° 31<br>
+        4800-416 Guimarães<br>
+        Portugal
+
+      </address>
+
+
+      <p class="reveal contact-phone">
+
+        <a href="tel:939445079">
+          939 445 079
+        </a>
+
+      </p>
+
+
+      <div class="reveal contact-actions">
+
+        <a
+          href="tel:939445079"
+          class="btn btn-gold"
+          data-pt="Ligar"
+          data-en="Call">
+          Ligar
+        </a>
+
+
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=Alma+Guimar%C3%A3es+R.+Jo%C3%A3o+de+Melo+31+Guimar%C3%A3es"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+          data-pt="Como chegar"
+          data-en="Get Directions">
+          Como chegar
+        </a>
+
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Alma+Guimar%C3%A3es+R.+Jo%C3%A3o+de+Melo+31+Guimar%C3%A3es"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline"
+          data-pt="Google Maps"
+          data-en="Google Maps">
+          Google Maps
+        </a>
+
+      </div>
+
+
+      <div class="reveal thefork-note">
+
+        <p
+          class="small-label"
+          data-pt="Também listado no TheFork"
+          data-en="Also listed on TheFork">
+          Também listado no TheFork
+        </p>
+
+        <p class="small-text">
+          João de Melo 20, 4810-431 Guimarães, Portugal
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="contact-map reveal">
+
+      <iframe
+        title="Mapa — Alma Guimarães"
+        src="https://maps.google.com/maps?q=R.%20Jo%C3%A3o%20de%20Melo%20n%C2%B0%2031%2C%204800-416%20Guimar%C3%A3es%2C%20Portugal&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+
+      <p class="footer-name">
+        Alma Guimarães
+      </p>
+
+      <p
+        class="footer-loc"
+        data-pt="Guimarães · Portugal"
+        data-en="Guimarães · Portugal">
+        Guimarães · Portugal
+      </p>
+
+      <p class="footer-phone">
+        <a href="tel:939445079">
+          939 445 079
+        </a>
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=Alma+Guimar%C3%A3es+R.+Jo%C3%A3o+de+Melo+31+Guimar%C3%A3es"
+        target="_blank"
+        rel="noopener">
+        Google Maps
+      </a>
+
+      <a
+        href="https://www.thefork.pt/"
+        target="_blank"
+        rel="noopener">
+        TheFork
+      </a>
+
+    </div>
+
+
+    <div class="footer-fine">
+
+      <p>
+        &copy;
+        <span id="year"></span>
+        Alma Guimarães
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- ================= LIGHTBOX ================= -->
+
+<div
+  class="lightbox"
+  id="lightbox"
+  aria-hidden="true">
+
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    aria-label="Fechar">
+    &times;
+  </button>
+
+  <img
+    src=""
+    alt=""
+    id="lightboxImg">
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
