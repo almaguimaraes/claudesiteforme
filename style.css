@@ -783,3 +783,29 @@ h2.center{ text-align: center; margin-bottom: 56px; }
   .rating-summary{ flex-direction: column; gap: 10px; }
   .rating-meta{ text-align: center; }
 }
+
+.lang-toggle {
+  appearance: none;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--ivory);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lang-toggle:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold);
+}
+
+@media (max-width: 720px) {
+  .lang-toggle {
+    margin-top: 8px;
+  }
+}
