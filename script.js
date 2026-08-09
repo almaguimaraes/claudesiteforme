@@ -16,7 +16,6 @@
       );
     });
 
-    // Close menu when clicking navigation links
     links.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
         links.classList.remove("open");
@@ -53,6 +52,7 @@
     revealEls.forEach(function (el) {
       observer.observe(el);
     });
+
   } else {
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
@@ -70,6 +70,10 @@
 
   function openLightbox(src, alt) {
     if (!lightbox || !lightboxImg) {
+      return;
+    }
+
+    if (!src) {
       return;
     }
 
@@ -100,15 +104,24 @@
     );
 
     document.body.style.overflow = "";
+
+    if (lightboxImg) {
+      lightboxImg.src = "";
+    }
   }
 
 
   galleryItems.forEach(function (item) {
     item.addEventListener("click", function () {
+
+      if (item.classList.contains("img-empty")) {
+        return;
+      }
+
       var full = item.getAttribute("data-full");
       var img = item.querySelector("img");
 
-      if (item.classList.contains("img-empty")) {
+      if (!full) {
         return;
       }
 
@@ -180,14 +193,20 @@
 
   /* ================= LANGUAGE ================= */
 
+  /*
+    Language is NOT saved.
+
+    Every page refresh starts in Portuguese.
+  */
+
   var languageToggle =
     document.getElementById("languageToggle");
 
-  var currentLanguage =
-    localStorage.getItem("alma-language") || "pt";
+  var currentLanguage = "pt";
 
 
   function setLanguage(language) {
+
     currentLanguage = language;
 
     document.documentElement.lang =
@@ -199,6 +218,7 @@
     document
       .querySelectorAll("[data-pt][data-en]")
       .forEach(function (element) {
+
         var translated =
           element.getAttribute(
             "data-" + language
@@ -211,6 +231,7 @@
 
 
     if (languageToggle) {
+
       languageToggle.textContent =
         language === "pt"
           ? "EN"
@@ -223,42 +244,30 @@
           : "Mudar para português"
       );
     }
-
-
-    localStorage.setItem(
-      "alma-language",
-      language
-    );
   }
 
 
   if (languageToggle) {
+
     languageToggle.addEventListener(
       "click",
       function () {
+
         setLanguage(
           currentLanguage === "pt"
             ? "en"
             : "pt"
         );
 
-        // Close mobile menu after changing language
-        if (links && toggle) {
-          links.classList.remove("open");
-
-          toggle.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-        }
       }
     );
+
   }
 
 
-  /* Start in saved language */
+  /* Start in Portuguese every time */
 
-  setLanguage(currentLanguage);
+  setLanguage("pt");
 
 
   /* ================= FOOTER YEAR ================= */
@@ -267,8 +276,10 @@
     document.getElementById("year");
 
   if (yearEl) {
+
     yearEl.textContent =
       new Date().getFullYear();
+
   }
 
 })();
