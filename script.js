@@ -1,79 +1,107 @@
 (function () {
   "use strict";
 
-  /* ================= MOBILE NAV ================= */
+  /* MOBILE NAV */
 
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
 
   if (toggle && links) {
+
     toggle.addEventListener("click", function () {
+
       var isOpen = links.classList.toggle("open");
 
       toggle.setAttribute(
         "aria-expanded",
         isOpen ? "true" : "false"
       );
+
     });
 
     links.querySelectorAll("a").forEach(function (link) {
+
       link.addEventListener("click", function () {
+
         links.classList.remove("open");
 
         toggle.setAttribute(
           "aria-expanded",
           "false"
         );
+
       });
+
     });
+
   }
 
 
-  /* ================= SCROLL REVEAL ================= */
+  /* SCROLL REVEAL */
 
-  var revealEls = document.querySelectorAll(".reveal");
+  var revealEls =
+    document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window) {
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
+
+    var observer =
+      new IntersectionObserver(
+        function (entries) {
+
+          entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "is-visible"
+              );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
 
     revealEls.forEach(function (el) {
       observer.observe(el);
     });
 
   } else {
+
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
     });
+
   }
 
 
-  /* ================= LIGHTBOX ================= */
+  /* LIGHTBOX */
 
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightboxImg");
-  var lightboxClose = document.getElementById("lightboxClose");
-  var galleryItems = document.querySelectorAll(".gallery-item");
+  var lightbox =
+    document.getElementById("lightbox");
+
+  var lightboxImg =
+    document.getElementById("lightboxImg");
+
+  var lightboxClose =
+    document.getElementById("lightboxClose");
+
+  var galleryItems =
+    document.querySelectorAll(".gallery-item");
 
 
   function openLightbox(src, alt) {
-    if (!lightbox || !lightboxImg) {
-      return;
-    }
 
-    if (!src) {
+    if (!lightbox || !lightboxImg) {
       return;
     }
 
@@ -92,6 +120,7 @@
 
 
   function closeLightbox() {
+
     if (!lightbox) {
       return;
     }
@@ -104,70 +133,85 @@
     );
 
     document.body.style.overflow = "";
-
-    if (lightboxImg) {
-      lightboxImg.src = "";
-    }
   }
 
 
   galleryItems.forEach(function (item) {
-    item.addEventListener("click", function () {
 
-      if (item.classList.contains("img-empty")) {
-        return;
+    item.addEventListener(
+      "click",
+      function () {
+
+        if (
+          item.classList.contains(
+            "img-empty"
+          )
+        ) {
+          return;
+        }
+
+        var full =
+          item.getAttribute("data-full");
+
+        var img =
+          item.querySelector("img");
+
+        openLightbox(
+          full,
+          img ? img.alt : ""
+        );
+
       }
+    );
 
-      var full = item.getAttribute("data-full");
-      var img = item.querySelector("img");
-
-      if (!full) {
-        return;
-      }
-
-      openLightbox(
-        full,
-        img ? img.alt : ""
-      );
-    });
   });
 
 
   if (lightboxClose) {
+
     lightboxClose.addEventListener(
       "click",
       closeLightbox
     );
+
   }
 
 
   if (lightbox) {
+
     lightbox.addEventListener(
       "click",
       function (event) {
+
         if (event.target === lightbox) {
           closeLightbox();
         }
+
       }
     );
+
   }
 
 
   document.addEventListener(
     "keydown",
     function (event) {
+
       if (event.key === "Escape") {
         closeLightbox();
       }
+
     }
   );
 
 
-  /* ================= NAV SCROLL ================= */
+  /* NAV SCROLL */
 
-  var nav = document.getElementById("nav");
+  var nav =
+    document.getElementById("nav");
 
   function updateNav() {
+
     if (!nav) {
       return;
     }
@@ -188,21 +232,18 @@
     { passive: true }
   );
 
-  updateNav();
 
-
-  /* ================= LANGUAGE ================= */
-
-  /*
-    Language is NOT saved.
-
-    Every page refresh starts in Portuguese.
-  */
+  /* LANGUAGE */
 
   var languageToggle =
-    document.getElementById("languageToggle");
+    document.getElementById(
+      "languageToggle"
+    );
 
-  var currentLanguage = "pt";
+  var currentLanguage =
+    localStorage.getItem(
+      "alma-language"
+    ) || "pt";
 
 
   function setLanguage(language) {
@@ -216,7 +257,9 @@
 
 
     document
-      .querySelectorAll("[data-pt][data-en]")
+      .querySelectorAll(
+        "[data-pt][data-en]"
+      )
       .forEach(function (element) {
 
         var translated =
@@ -225,8 +268,12 @@
           );
 
         if (translated !== null) {
-          element.innerHTML = translated;
+
+          element.innerHTML =
+            translated;
+
         }
+
       });
 
 
@@ -243,7 +290,15 @@
           ? "Mudar para inglês"
           : "Mudar para português"
       );
+
     }
+
+
+    localStorage.setItem(
+      "alma-language",
+      language
+    );
+
   }
 
 
@@ -265,12 +320,10 @@
   }
 
 
-  /* Start in Portuguese every time */
-
-  setLanguage("pt");
+  setLanguage(currentLanguage);
 
 
-  /* ================= FOOTER YEAR ================= */
+  /* FOOTER YEAR */
 
   var yearEl =
     document.getElementById("year");
